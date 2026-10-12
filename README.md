@@ -36,7 +36,7 @@ npm run typecheck
 npm run check:links  # every internal link in out/ resolves to a file
 ```
 
-Use Node 24 (see `.nvmrc`); CI uses the same version, and its npm 11 must match the one that wrote `package-lock.json`.
+Use Node 24 (see `.nvmrc`), the same version CI uses. If you add or remove a dependency and CI's `npm ci` then complains the lockfile is out of sync, regenerate it from scratch (`rm -rf node_modules package-lock.json && npm install`): npm on Windows can drop the Linux-only optional dependencies.
 
 ## Deploying
 
