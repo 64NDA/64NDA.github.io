@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/* Dark mode follows `data-theme` on <html>, set before paint by the inline script in layout.tsx. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Colour tokens. Components use the Tailwind names below (bg-paper, text-ink, …), never raw hex. */
+:root {
+  --paper: #fbfaf7;
+  --surface: #f3f1eb;
+  --ink: #1c1b19;
+  --muted: #5d5a53;
+  --faint: #8c887f;
+  --rule: #e4e0d6;
+  --accent: #b4441f;
+  --accent-soft: #f6e4dc;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --paper: #121110;
+  --surface: #1b1a18;
+  --ink: #ecebe6;
+  --muted: #a7a399;
+  --faint: #77736b;
+  --rule: #2b2926;
+  --accent: #ef8a5f;
+  --accent-soft: #3a2219;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  :root,
+  [data-theme="dark"] {
+    --paper: #fff;
+    --surface: #fff;
+    --ink: #000;
+    --muted: #333;
+    --faint: #555;
+    --rule: #bbb;
+    --accent: #000;
+  }
+}
