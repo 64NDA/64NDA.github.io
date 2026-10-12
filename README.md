@@ -36,7 +36,7 @@ npm run typecheck
 npm run check:links  # every internal link in out/ resolves to a file
 ```
 
-Use Node 22 (see `.nvmrc`).
+Use Node 24 (see `.nvmrc`); CI uses the same version, and its npm 11 must match the one that wrote `package-lock.json`.
 
 ## Deploying
 
